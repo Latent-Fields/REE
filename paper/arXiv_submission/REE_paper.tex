@@ -1,0 +1,314 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{cite}
+\usepackage{times}
+
+\title{The Reflective-Ethical Engine (REE): A Minimal Architecture for Coherent Artificial Cognition}
+
+\author{
+    Daniel De La Harpe Golden, MB BCh BAO, MRCPsych\\
+    Consultant Psychiatrist, Health Service Executive, Ireland\\
+    \texttt{daniel.de.la.harpe.golden@gmail.com}
+}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We introduce the Reflective-Ethical Engine (REE), a minimal cognitive architecture unifying perception, action, planning, and conscious experience through trajectory selection in a fused predictive latent manifold. The architecture comprises three functional components: E1 (a deep recurrent predictor), E2 (a fast feedforward predictor), and E3 (a trajectory selector). E1 and E2 generate complementary prediction fields that fuse into a single latent manifold (L-space) encoding temporally-displaced sensorimotor possibilities, including both forward predictions and backward retrodictions. This manifold stratifies by prediction depth into functional regions (L0--L4) spanning immediate perception to long-horizon reasoning. E3 selects coherent trajectories through this space, and the selected trajectory constitutes both perceptual experience and executed action. The architecture includes dedicated offline modes for maintaining manifold health through replay, denoising, expansion, and consolidation.
+
+REE provides unified mechanistic accounts for psychiatric phenomena as failures in prediction maintenance, distortions in latent geometry, and errors in trajectory selection. This work builds on and extends our earlier publication \cite{golden2025ree}, adding retrodictive inference, enhanced positioning relative to existing frameworks, and additional testable predictions for the research community. The architecture is substrate-independent and released under CC-BY 4.0.
+\end{abstract}
+
+\noindent\textbf{Keywords:} cognitive architecture, predictive processing, consciousness, computational psychiatry, AGI, world models
+
+\section{Introduction}
+
+Traditional Artificial Intelligence systems often employ separate modules for perception, action, planning, and (where discussed) consciousness. Biological cognition does not respect these separations. The Reflective-Ethical Engine (REE) is proposed as a minimal unified architecture in which these functions emerge from the interaction of two complementary prediction systems (E1/E2) operating at different timescales, a single fused latent manifold organized by prediction depth, and a coherence-based trajectory selector (E3).
+
+REE builds on concepts in predictive processing \cite{friston2009free,clark2016surfing}, world models \cite{ha2018world,hafner2023mastering}, computational psychiatry \cite{montague2012computational,adams2016computational}, and hybrid architectures integrating multiple generative mechanisms \cite{liu2024tidar}. This work extends the architecture initially described in \cite{golden2025ree}, adding retrodictive components, enhanced scientific context, and additional references to position the framework within the broader landscape of cognitive architectures and consciousness theories.
+
+\subsection{Novel Contributions}
+
+REE introduces several architectural and theoretical commitments that distinguish it from existing approaches:
+
+\begin{enumerate}
+    \item Dual-timescale predictive fusion into a single temporally-displaced manifold
+    \item L-space as a prediction-depth continuum rather than discrete layers or modules
+    \item Trajectory selection as the fundamental mechanism of conscious experience
+    \item Temporal realignment in action decoding to compensate for motor and sensory delays
+    \item A unified perception-action-planning substrate with no separate processing modules
+    \item Computational psychiatry via manifold geometry, mapping symptoms to specific geometric distortions
+    \item A minimal substrate-independent AGI architecture grounded in predictive principles
+\end{enumerate}
+
+\section{Architecture}
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.7\textwidth]{ree_architecture.pdf}
+    \caption{REE Core Architecture. E1 (deep recurrent predictor) and E2 (fast feedforward predictor) generate complementary predictions that fuse into L-space. E3 selects coherent trajectories, with the selected trajectory constituting both conscious experience and action.}
+    \label{fig:architecture}
+\end{figure}
+
+\subsection{Predictive Components}
+
+\subsubsection{E1: Deep Recurrent Predictor}
+
+E1 provides long-horizon structured prediction, learning representations of objects, causal structure, spatial layouts, and counterfactuals. It outputs a bundle of predicted future states $\{\hat{s}_{t+k}\}_{k=2}^K$ and maintains an internal state $h_t$ representing the world model. E1 performs multi-step temporal prediction ($k \geq 2$ steps ahead) through recurrent or temporally-structured processing, maintains this internal state encoding the world model, and is capable of generating counterfactual trajectories for planning and reasoning.
+
+Example implementations include recurrent networks (GRU, LSTM), Transformers with temporal attention, state-space models, and hierarchical predictive coding networks. One possible formulation is:
+
+\begin{equation}
+h_{t+1}, \{\hat{s}_{t+k}\}_{k=2}^K = \text{E1}(h_t, s_t, a_t; \theta_1)
+\label{eq:e1}
+\end{equation}
+
+where $h_t$ is the recurrent hidden state, $s_t$ is sensory input, $a_t$ is action, and $K$ defines the prediction horizon.
+
+\subsubsection{E2: Fast Feedforward Predictor}
+
+E2 generates rapid single-step predictions $\hat{s}_{t+1}$ that anchor the architecture to immediate sensory reality. It prevents drift into unconstrained imagination and provides the stabilizing reflexive basis needed for online behavior. E2 performs single-step or very short-horizon prediction through feedforward or shallow processing with low latency and high update rates, maintaining strong coupling to immediate sensory input.
+
+Example implementations include shallow feedforward networks, fast recurrent circuits, cerebellar-like forward models, and Kalman filters. One formulation is:
+
+\begin{equation}
+\hat{s}_{t+1} = \text{E2}(s_t, a_t; \theta_2)
+\label{eq:e2}
+\end{equation}
+
+\subsubsection{Fusion into Unified Latent Manifold}
+
+E1 and E2 outputs are embedded and fused into a single shared latent manifold $z_t$, creating a unified representational space encoding all accessible near-future states. The embedding process begins by projecting E1 and E2 outputs into a common representational space, then aligning and fusing these embeddings to produce a single latent state representing temporally-displaced possibilities. One formulation is:
+
+\begin{equation}
+u_t^{(1)} = \text{U1}(h_t, \{\hat{s}_{t+k}\}), \quad u_t^{(2)} = \text{U2}(\hat{s}_{t+1})
+\label{eq:embed}
+\end{equation}
+
+\begin{equation}
+z_t = F_{\text{fuse}}(u_t^{(1)}, u_t^{(2)}; \theta_f)
+\label{eq:fuse}
+\end{equation}
+
+The resulting manifold is single and unified rather than consisting of separate hierarchies, represents temporally-displaced predictions encoding everything the agent could perceive or do, and provides a shared representational substrate for both perception and action.
+
+\subsubsection{Learning Dynamics}
+
+REE components are trained end-to-end on continuous sensorimotor streams to ensure joint adaptation. Training involves multi-step prediction objectives for E1, single-step error minimization for E2, and fusion alignment losses. One example training objective is:
+
+\begin{equation}
+\mathcal{L} = \lambda_1 \sum_{k=2}^K \|\hat{s}_{t+k}^{(\text{E1})} - s_{t+k}\|^2 + \lambda_2 \|\hat{s}_{t+1}^{(\text{E2})} - s_{t+1}\|^2 + \lambda_f \mathcal{L}_{\text{fuse}}
+\label{eq:loss}
+\end{equation}
+
+We note that REE does not require explicit reinforcement learning. Value functions $V(\gamma)$, if present, are optional modulatory components within E3 rather than foundational to the architecture. The core E1/E2/E3 structure with trajectory selection functions independently of any RL framework.
+
+\subsection{L-Space: The Fused Latent Manifold}
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.85\textwidth]{lspace_structure.pdf}
+    \caption{L-space Prediction-Depth Structure. The fused latent manifold is a continuous prediction-depth continuum (not discrete layers) spanning retrodicted past ($d<0$) through present ($d \approx 0$) to predicted future ($d>0$). Functional regions L0--L4 emerge from this structure, from immediate perception to long-horizon reasoning and offline consolidation.}
+    \label{fig:lspace}
+\end{figure}
+
+\subsubsection{Prediction-Depth Structure and Temporal Manifold}
+
+The fused latent manifold is not a collection of discrete layers but a continuous representational space naturally structured by prediction depth. This creates a temporal manifold encoding both future predictions and past inferences. We represent this formally as:
+
+\begin{equation}
+z_t = z_t(d, \alpha), \quad d \in [-D_{\text{past}}, D_{\text{future}}]
+\label{eq:lspace}
+\end{equation}
+
+where $d$ is the prediction-depth coordinate (temporal horizon), $\alpha$ indexes modality, abstraction, or feature dimensions, $d > 0$ represents predicted future states, $d \approx 0$ represents the predicted present (with slight temporal offset), and $d < 0$ represents retrodicted past states. This creates a prediction-depth continuum rather than rigid architectural layers.
+
+\subsubsection{Retrodictive Components}
+
+Although L-space is primarily future-oriented for action planning, it naturally includes retrodictive components: predictions of what recent past states must have been to satisfy temporal coherence. These arise because E1's recurrent dynamics implicitly encode historical constraints, multi-step prediction rollouts require a consistent inferred past, the manifold must evaluate trajectories that include internally consistent temporal structure, and coherent experience requires explaining recent sensory input rather than only predicting future states.
+
+Thus, L-space contains inferred pasts but not stored sensory history. This mirrors biological findings that hippocampal and cortical circuits reconstruct past states through generative inference rather than storing them verbatim \cite{stachenfeld2017hippocampus,zacks2007human,hassabis2007construction}. The organism does not replay recordings but rather re-generates plausible pasts consistent with current beliefs and accumulated evidence. While this differs from classical episodic memory systems that bind and retrieve specific events, the two mechanisms are complementary: episodic memories can serve as constraints on retrodictive inference, while retrodiction provides the continuous temporal fabric within which discrete episodic memories are embedded.
+
+Retrodiction serves multiple functions within the architecture: maintaining temporal coherence across trajectories, enabling explanation of surprising observations, supporting episodic reconstruction, and providing a self-consistent world model. Implementation can be realized through bidirectional recurrent dynamics in E1, backward passes through learned temporal models, variational inference over past latent states, or any mechanism generating temporally-consistent past reconstructions.
+
+\subsubsection{Functional Regions (L0-L4)}
+
+These regions emerge functionally from the prediction-depth structure and can be implemented as continuous coordinates, attentional focus regions, distinct pathways, or oscillatory dynamics in biological systems.
+
+\textbf{L0 (Immediate Perceptual Coherence)} operates at the shortest prediction horizon ($d \approx 0$) with direct sensory-like representations, minimal abstraction, and rapid update rates. Its function is to ground the system in immediate sensory reality. In biological implementations, this may correspond to gamma-band activity ($\sim$30--100 Hz).
+
+\textbf{L1 (Near-Term Actions and Affordances)} handles short-horizon predictions representing available actions, motor primitives, and immediate environment interactions. It enables immediate reactive behavior and may correspond to beta-band activity ($\sim$13--30 Hz) in biological systems.
+
+\textbf{L2 (Structured World Model)} manages medium-horizon structured predictions encoding object permanence, spatial relationships, and causal structure. It provides structured understanding of world dynamics and may correspond to alpha-band activity ($\sim$8--13 Hz).
+
+\textbf{L3 (Long-Horizon Counterfactual Reasoning)} supports long-range predictions and hypotheticals, including abstract concepts, narratives, and social modeling. It enables planning, reasoning, and abstract thought, potentially corresponding to theta-band activity ($\sim$4--8 Hz).
+
+\textbf{L4 (Global Integration and Offline Consolidation)} operates predominantly during offline modes, coordinating across other layers through slow-wave dynamics. It performs hard consolidation and global reorganization for memory consolidation and manifold maintenance, potentially corresponding to delta-band activity (<4 Hz) and sleep spindles in biological systems.
+
+The oscillatory frequencies mentioned are examples of biological implementation rather than requirements. The architecture covers any implementation achieving prediction-depth stratification, regardless of substrate, oscillations, or specific timing mechanisms.
+
+\subsubsection{Self-Modeling and Interoceptive Integration}
+
+The fused manifold can include interoceptive dimensions (internal bodily states, homeostatic signals, proprioception) alongside exteroceptive predictions. A coherent sense of self corresponds to a metastable family of E3 trajectories that consistently incorporate interoceptive states, maintain homeostatic invariants, bind long-horizon predictions (L3) with immediate constraints (L1/L0), and preserve identity-relevant features across time.
+
+Failure modes include dissociation (geodesic discontinuity in self-trajectory bundle), loss of agency (weak coupling between intention at L3 and action at L1), and identity instability (fragmented or rapidly-varying self-trajectories). While interoceptive integration is powerful, the core architecture (E1/E2/E3 + L-space + trajectory selection) functions without it.
+
+\subsection{E3: Trajectory Selection}
+
+\subsubsection{Generation and Evaluation}
+
+E3 generates multiple candidate future trajectories through the latent manifold and evaluates them for coherence, selecting a single trajectory that becomes both perceptual experience and action. Trajectory generation methods include rollouts of learned latent dynamics, Monte Carlo Tree Search in latent space, diffusion-based trajectory sampling, and stochastic sampling from prediction distributions.
+
+Evaluation proceeds according to:
+
+\begin{equation}
+C(\gamma) = C_{\text{coherence}}(\gamma) + \lambda_V V(\gamma) + \lambda_M M(\gamma)
+\label{eq:coherence}
+\end{equation}
+
+where $C_{\text{coherence}}(\gamma)$ measures cross-layer consistency, $V(\gamma)$ is an optional value or reward term, and $M(\gamma)$ represents modulatory effects (ethical, affective, safety). 
+
+A trajectory $\gamma$ is formally defined as a sequence of latent states across prediction depth:
+
+\begin{equation}
+\gamma = \{z_{t+d} \mid d \in [d_{\min}, d_{\max}]\}
+\label{eq:trajectory}
+\end{equation}
+
+which can be generated through learned dynamics: $\gamma = \text{Rollout}(z_t, \theta)$.
+
+Coherence evaluation can involve vector similarity between layer predictions, predictive consistency (L3 predicts L2, L2 predicts L1, etc.), distance metrics in latent space, attention-weighted agreement scores, or prediction error minimization across depth.
+
+Selection proceeds via:
+
+\begin{equation}
+\gamma^* = \arg\max_\gamma C(\gamma)
+\label{eq:selection}
+\end{equation}
+
+The key principle is that the selected trajectory is conscious experience and determines action.
+
+\subsubsection{Temporal Realignment in Action Decoding}
+
+Motor commands have execution delays, and sensory consequences have processing delays. To achieve accurate sensorimotor control, actions must be decoded from appropriate future points on the selected trajectory. Let $\Delta_{\text{motor}}$ denote motor execution delay and $\Delta_{\text{sensor}}$ denote sensory processing delay. One approach to action decoding is:
+
+\begin{equation}
+a_{t+1} = g_a(z^*_{t+\Delta_{\text{motor}}+\Delta_{\text{sensor}}})
+\label{eq:action}
+\end{equation}
+
+where $g_a$ is an action decoder and $z^*$ represents points on the selected trajectory $\gamma^*$. This is similar to cerebellar forward models compensating for feedback delays in biological systems. The key property is that action is inherently temporally aligned with predicted future world state rather than current sensory input.
+
+\subsubsection{Modulatory Effects: Affective, Ethical, and Safety Constraints}
+
+The modulatory term $M(\gamma)$ allows trajectory preferences to be shaped by affective states, ethical principles, safety constraints, and alignment objectives. Modulation can implement affective biasing (emotional states enhance or inhibit certain trajectory classes), ethical constraints (forbidden or discouraged paths involving harm to others or deception), safety boundaries (hard constraints on dangerous actions), value alignment (bias toward human-compatible outcomes), and homeostatic regulation (preference for physiologically stable trajectories).
+
+A key insight is that affect, ethics, and safety are trajectory modulation rather than separate post-hoc systems. They are intrinsic to the selection process. The Reflective-Ethical Kernel (REK) proposed in our earlier work \cite{golden2025ree} can be realized as a specialized component of $M(\gamma)$ enforcing other-regarding constraints, flourishing maximization, suffering minimization, and social alignment.
+
+\subsection{Offline Consolidation Modes}
+
+During offline periods (sleep, rest, downtime), REE engages in manifold maintenance operations that preserve learned structure, remove spurious correlations, expand representational capacity, and consolidate memories. These modes prevent latent collapse and maintain healthy manifold geometry.
+
+\textbf{Replay} involves re-processing of past trajectories, strengthening long-range temporal structure, consolidating episodic sequences, and preventing catastrophic forgetting. In biological systems, this may be implemented through hippocampal replay during slow-wave sleep.
+
+\textbf{Denoising via slow-wave effects} removes spurious correlations, strengthens reliable patterns while weakening noise, maintains signal-to-noise ratio in latent representations, and enables global reorganization and cleanup. Biological implementation may involve slow-wave sleep with delta oscillations.
+
+\textbf{Latent space expansion} explores the manifold through random recombinations of latent representations and stochastic exploration, discovering new connections and representations while preventing dimensional collapse. This may correspond to REM sleep and spontaneous neural activity in biological systems.
+
+\textbf{Hard consolidation} performs structural reorganization and memory transfer, makes permanent changes to manifold topology, integrates new knowledge into core structure, and locks in critical learned structures. Biological implementation may involve sleep spindles on delta rhythms.
+
+The biological implementations mentioned are examples. The architecture covers any offline maintenance mechanism achieving trajectory consolidation, noise reduction, dimensionality preservation, and structural integration, regardless of substrate or timing.
+
+\section{Computational Psychiatry}
+
+REE provides unified mechanistic accounts of psychiatric symptoms as failures in prediction maintenance, latent geometry, trajectory selection, and consolidation.
+
+\subsection{Symptom-Mechanism Mapping}
+
+\textbf{Hallucinations:} Excess divergence tolerance at L3; weak L0/L1 constraints allow unconstrained predictions to be selected as perception.
+
+\textbf{Delusions:} Flattened manifold metric; distant L3 hypotheses become nearby; weak L2 constraints allow implausible world models.
+
+\textbf{Negative symptoms:} Latent dimensionality collapse; reduced manifold volume means E3 finds few viable trajectories (avolition, alogia, anhedonia).
+
+\textbf{Thought disorder:} L2--L3 instability; rapid incompatible trajectory switching; fragmented conceptual structure.
+
+\textbf{Mania:} Over-dominant L3; weak L1/L0 constraints; inflated value for high-variance trajectories; reduced sleep-based consolidation.
+
+\textbf{Depression:} Value functional $V(\gamma)$ collapse; flat reward landscape; all trajectories appear uniformly unrewarding; reduced latent exploration.
+
+\textbf{PTSD:} High-cost forbidden latent regions; E3 avoids trauma-associated submanifolds; maladaptive replay patterns.
+
+\textbf{Dissociation:} Geodesic discontinuity in self-trajectory bundle; fragmented identity; loss of cross-layer integration.
+
+\textbf{Autism Spectrum:} Altered prediction precision weighting; different L-space metric structure; atypical sensory integration.
+
+\textbf{Obsessive-Compulsive:} Excessive E3 re-evaluation; failure to commit to trajectories; compulsive trajectory regeneration.
+
+\subsection{Testable Predictions}
+
+Neuroimaging predictions include reduced latent covariance and measurable dimensional collapse in schizophrenia, flattened value gradients and reduced L2--L3 coherence in depression, excessive L3 activity with weakened L1 constraints in mania, and reduced effective dimensionality in latent representations for negative symptoms.
+
+Oscillatory predictions include altered cross-frequency coupling in corresponding symptoms, theta-gamma disruption in thought disorder, reduced sleep spindle density in negative symptoms, and abnormal delta-wave consolidation in memory-related deficits.
+
+Pharmacological mapping suggests that antipsychotics reduce divergence tolerance and strengthen sensory constraints, SSRIs modulate value landscape curvature and enable manifold plasticity, stimulants strengthen E2/L0 anchoring, and psychedelics temporarily increase divergence tolerance with implications for both therapeutic windows and psychosis risk.
+
+\section{Relationship to Existing Work}
+
+\subsection{Predictive Processing and Active Inference}
+
+REE builds on the predictive processing framework \cite{friston2009free,clark2016surfing,friston2017active} but introduces explicit architectural commitments. Where predictive processing proposes hierarchically uniform prediction, REE specifies dual-timescale architecture (E1/E2). Where active inference employs message passing or variational inference, REE uses geometric trajectory selection (E3). Where theoretical frameworks provide variational bounds, REE offers concrete implementation paths. We view REE as a concrete instantiation of predictive principles with specific architectural commitments enabling implementation and empirical testing.
+
+\subsection{World Models}
+
+Recent work in model-based RL has developed powerful world models \cite{ha2018world,hafner2023mastering,schrittwieser2020mastering}. REE differs fundamentally in treating the world model as perception substrate rather than only a planning tool, defining experience through E3 trajectory selection rather than just optimal policy, providing unified perception-action embedding versus separate models and policies, including explicit offline manifold maintenance, and offering computational psychiatry mapping entirely absent from world model work. REE extends world models from control systems to complete cognitive architectures.
+
+\subsection{Hybrid Architectures}
+
+The dual-timescale insight was initially inspired by TiDAR \cite{liu2024tidar}, which combines diffusion models (slow, parallel, high-quality) with autoregressive refinement (fast, sequential) for language generation. REE extends this concept through biological mapping to cerebral/cortical and cerebellar networks, fusion into a unified manifold rather than pipeline processing, temporally-displaced perception representing predicted states, oscillatory correspondence mapping to EEG frequency bands, consciousness mechanism through E3 selection, and complete cognitive architecture with offline modes and psychiatric modeling.
+
+\subsection{Consciousness Theories}
+
+Several computational theories inform REE, including Global Workspace Theory \cite{baars1988cognitive}, Higher-Order Thought theories, and Integrated Information Theory \cite{dehaene2011experimental}. REE contributes a mechanistic proposal (trajectory selection as consciousness), an implementable architecture (not information-theoretic bound), psychiatric predictions (generates testable failure modes), and substrate independence (can be implemented and tested across platforms).
+
+\subsection{Temporal Inference and Retrodiction}
+
+Neuroscience demonstrates that organisms continuously infer not only future but also past latent states \cite{stachenfeld2017hippocampus,zacks2007human}. REE is consistent with these findings while operationalizing them within a clean predictive architecture that naturally generates both forward predictions and backward inferences through the same manifold structure.
+
+\section{Limitations and Future Work}
+
+REE is intentionally minimal, focusing on core architectural principles rather than comprehensive implementation details. Several important aspects remain underspecified or are designated as future work. The architecture does not specify biological implementation details beyond functional correspondences (e.g., oscillatory mappings), leaving substrate-specific optimizations to implementers. Mechanisms for learning ethical constraints and value functions within $M(\gamma)$ are not elaborated, though we propose they emerge from social learning and cultural transmission. Embodiment-dependent refinements, such as proprioceptive integration and sensorimotor coupling, are acknowledged as important but treated as instantiation details rather than architectural requirements. The psychiatric mapping provides mechanistic hypotheses but requires substantial empirical validation through neuroimaging, pharmacological, and behavioral studies. Finally, the architecture's scaling properties and computational complexity under realistic conditions remain to be characterized through implementation and testing.
+
+These limitations are deliberate: REE aims to provide a conceptual scaffold that can accommodate diverse implementations and extensions while maintaining theoretical coherence. Future work will address these aspects through both theoretical refinement and empirical validation.
+
+\section{Conclusion}
+
+REE provides a minimal, implementable cognitive architecture unifying perception (temporally-displaced prediction), action (trajectory-based motor control), planning (long-horizon trajectory evaluation), consciousness (E3 selection as experience), self-modeling (trajectory bundle structure), and psychiatric mechanisms (manifold geometry failures).
+
+The architecture requires only standard predictive learning mechanisms, scales naturally to embodied multi-modal cognition, generates testable psychiatric predictions, offers a blueprint for artificial general intelligence, and is substrate-independent and broadly implementable. By building on our earlier work \cite{golden2025ree} and adding retrodictive components with enhanced scientific context, we aim to provide the research community with a comprehensive framework for understanding and implementing unified cognitive architectures.
+
+\section*{Author Contributions}
+
+D.D.L.H.G. conceived the architecture, developed the theoretical framework, and wrote the manuscript. This is independent scholarly work conducted outside clinical employment.
+
+\section*{Acknowledgments}
+
+This work extends the architecture introduced in \cite{golden2025ree}. The author thanks the research community for feedback on the initial publication.
+
+\section*{Competing Interests}
+
+The author declares no competing interests. This work was developed entirely in personal time using personal resources, unrelated to clinical duties or employment.
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}
